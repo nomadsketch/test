@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
-import { AppState, Category, ArchiveItem } from '../types';
-import TicketCard from './TicketCard';
-import Barcode from './Barcode';
+import { AppState, Category, ArchiveItem } from '../types.ts';
+import TicketCard from './TicketCard.tsx';
+import Barcode from './Barcode.tsx';
 
 interface PublicViewProps {
   state: AppState;

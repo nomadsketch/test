@@ -1,16 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
-import { AppState, Project, ArchiveItem } from './types';
-import { INITIAL_PROJECTS, INITIAL_SERVICES, INITIAL_ARCHIVE } from './constants';
-import PublicView from './components/PublicView';
-import AdminView from './components/AdminView';
+import { AppState, Project, ArchiveItem } from './types.ts';
+import { INITIAL_PROJECTS, INITIAL_SERVICES, INITIAL_ARCHIVE } from './constants.tsx';
+import PublicView from './components/PublicView.tsx';
+import AdminView from './components/AdminView.tsx';
 
 const App: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
 
   const [state, setState] = useState<AppState>(() => {
     const defaultState: AppState = {
@@ -38,17 +36,12 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
-    setIsInitialized(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isInitialized) return;
     try {
       localStorage.setItem('odemind_archive_v4_prod', JSON.stringify(state));
     } catch (e) {
       console.error("SYSTEM_SYNC_ERROR", e);
     }
-  }, [state, isInitialized]);
+  }, [state]);
 
   const handleAdminToggle = () => {
     if (isAdmin) setIsAdmin(false);
@@ -100,8 +93,6 @@ const App: React.FC = () => {
     setState(prev => ({ ...prev, siteTitle, tagline }));
   };
 
-  if (!isInitialized) return null;
-
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white font-mono custom-scrollbar">
       <button 
@@ -112,7 +103,7 @@ const App: React.FC = () => {
       </button>
 
       {isAuthenticating && (
-        <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center p-4 backdrop-blur-md">
+        <div className="fixed inset-0 z-[100] bg-white/90 flex items-center justify-center p-4 backdrop-blur-md">
           <div className="w-full max-w-xs border border-black p-8 bg-white shadow-2xl">
             <div className="text-[8px] opacity-40 mb-8 underline tracking-[0.4em] uppercase font-bold text-center">AUTHENTICATION_REQUIRED</div>
             <form onSubmit={handleAuth} className="space-y-6">

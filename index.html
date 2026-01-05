@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,9 +16,9 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-osx-font-smoothing: grayscale;
         text-transform: uppercase;
+        margin: 0;
       }
       
-      /* Ensure form elements and placeholders are also uppercase */
       input, textarea, select, button, option {
         text-transform: uppercase;
       }
@@ -29,37 +28,37 @@
       }
 
       .custom-scrollbar::-webkit-scrollbar {
-        width: 1px;
+        width: 2px;
       }
       .custom-scrollbar::-webkit-scrollbar-track {
-        background: #fff;
+        background: #ffffff;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #000;
+        background: #000000;
       }
-      @keyframes glitch {
-        0% { transform: translate(0); }
-        20% { transform: translate(-2px, 2px); }
-        40% { transform: translate(-2px, -2px); }
-        60% { transform: translate(2px, 2px); }
-        80% { transform: translate(2px, -2px); }
-        100% { transform: translate(0); }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
-      .glitch-hover:hover {
-        animation: glitch 0.2s infinite;
+      #root {
+        animation: fadeIn 0.5s ease-in;
       }
     </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
